@@ -272,7 +272,7 @@ class Lunch(object):
             print ("Error in menu")
             
 Paul=Lunch("menu 1")
-#Paul.menu_price()
+Paul.menu_price()
 
 '''
 9. Define a Point3D class that inherits from object Inside the 
@@ -290,11 +290,36 @@ This tells Python to represent this object in the following format:
      erle-robotics-learning-python-gitbookfree/classes/
      exercisesclasses.html
 '''
+class Point3D(object):
+    def __init__(self,x,y,z):
+        self.x = x
+        self.y = y
+        self.z = z
+    def __repr__(self):
+        return "(%d, %d, %d)" % (self.x, self.y, self.z)
 
+my_point = Point3D(1,2,3)
+print(my_point)
 
-
-
-
+'''
+2.8 List comprehension -  a quick reminder 
+1. Use dictionary 
+comprehension to create a dictionary of numbers 1- 100 to their 
+squares (i.e. {1:1, 2:4, 3:9 …} 
+'''
+def comprehention_dictionary():
+    n = {a:a**2 for a in range(1, 101)}
+    print(n)
+    
+    '''
+2. Use list comprehension to create 
+a list of prime numbers in the range 1100 
+http://www.secnetix.de/olli/Python/list_comprehensions.hawk 
+    '''
+def comprehention_list():
+    prime_list = [a for a in range(2, 1101) 
+                    if all(a%y != 0 for y in range(2, a))]
+    print(prime_list)
 
 
 
