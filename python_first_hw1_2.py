@@ -428,8 +428,74 @@ def spliting():
     print(a)
     b = ' '.join(a)
     print(b)
-def formating():
     
+def formating(a,b):
+    c = a+b
+    print('the sum of {} and {} is {}'.format(a,b,c))
+    
+'''
+2.12.
+Datetime, time, timeit
+Read the current datetime to a variable usint 
+datetime.datetime.no see:
+https://docs.python.org/3/library/datetime.html
+10. Print the date of the day before yesterday, and the
+ datetime in 12 hours
+from now
+Use time library to time library to time operations by 
+storing time.time()
+before and after running an operation
+https://www.tutorialspoint.com/python/time_time.htm
+1. Time one of the comprehension exercises you’ve performed
+ and compare
+to a simple for implementation, to determine which one is
+ faster
+1. Now use timeit library to time your list comprehension 
+operation, see:
+https://docs.python.org/2/library/timeit.html
+
+'''
+def timing1():
+    from datetime import date, timedelta
+    import time
+    
+    start = time.time()
+    
+    yesterday = date.today() - timedelta(days=1)
+    print(yesterday.strftime('%Y-%m-%d'))
+    end = time.time()
+    execution_time = end-start
+    print(execution_time)
+    
+def timing2(): 
+    from datetime import  datetime, timedelta
+    import time
+    
+    start = time.time()
+    
+    in_twelve_hours_from_now = datetime.now() + timedelta(hours=12)
+    print(format(in_twelve_hours_from_now, '{:%H:%M:%S}'))
+    
+    end = time.time()
+    execution_time = end-start
+    print(execution_time)
+
+def timing3():
+    from datetime import date, timedelta
+    yesterday = date.today() - timedelta(days=1)
+    return format(yesterday, '{:%yyyy:%mm:%dd}')
+    
+def timing4(): 
+    from datetime import  datetime, timedelta
+    in_twelve_hours_from_now = datetime.now() + timedelta(hours=12)
+    return format(in_twelve_hours_from_now, '{:%H:%M:%S}')
+
+print(timing3())
+print(timing4())
+
+import timeit
+print(timeit.timeit('timing3()',setup="from __main__ import  timing3" ))
+print(timeit.timeit('timing4()',setup="from __main__ import  timing4" ))
 
 
 
