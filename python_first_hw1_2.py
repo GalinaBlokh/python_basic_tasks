@@ -513,14 +513,31 @@ c. Create a code which tries to read from the dictionary of
 '''
 def dictionary_of_sq_enhanced():
     try:
-        n = int(input('Enter a number between 1 - 100'))
-    except ValueError:
+        n = int(input())
+    except:
         print('Error: only numbers, pls')
+    if (n>100):
+        raise Exception('Error: the number is bigger than 100', n)
     d = {i:i*i for i in range(1, n+1)}
-    print(d)
+    
+    import ast
+    with open("dictionaryfile.txt", "r") as data:
+        dictionary = ast.literal_eval(data.read())
+    print(dictionary)
 
-
-
+'''
+2.14.
+Logger
+Read about loggers from the example:
+https://fangpenlin.com/posts/2012/08/26/good-logging-practice
+-in-python/
+Create a logger in any of your programs and log various messages
+ to a fileusing a FileHandler, and to a the console using 
+ StreamHandler
+*Optional : try setting different levels (e.g. debug for 
+console and info for file)and different formats and try 
+different levels of logs in your code.
+'''
 
 
 
