@@ -317,18 +317,119 @@ a list of prime numbers in the range 1100
 http://www.secnetix.de/olli/Python/list_comprehensions.hawk 
     '''
 def comprehention_list():
-    prime_list = [a for a in range(2, 1101) 
+    prime_list = [a for a in range(1, 1101) 
                     if all(a%y != 0 for y in range(2, a))]
     print(prime_list)
 
+'''
+2.9. Files Use open, read, write, close which are explained in 
+these tutorials:
+https://www.tutorialspoint.com/python/python_files_io.htm 
+https://www.guru99.com/reading-and-writing-files-in-python.html
+ to: 
+    1. Write “Hello world” to a file 
+    2. Read the file back into python. 
+    3. Write the square roots of the numbers 1-100 into the file, 
+    each in new line. 
+'''
+def files_ex():
+    file = open("testfile.txt", "w")
+    file.write('Hello world \n')
+    file.write('This is our new text file \n') 
+    file.write('and this is another line.\n') 
+    file.write('Why? Because we can\n') 
+    file.close()
+    
+    file = open('testfile.txt', 'r')
+    #print(file.read())
+    #file = open('testfile.txt', 'r')
+    print(file.readlines())
+    
+    file = open("testfile.txt", "w")
+    for i in range(1,101):
+        file.write(str(i**2)+'\n')
+    file.close()
+    
+    file = open('testfile.txt', 'r')
+    print(file.readlines())
 
+'''
+2.10
+With
+Read about with in one of the following links:
+https://stackoverflow.com/questions/1369526/what-is-
+the-python-keywordwith-used-for
+http://effbot.org/zone/python-with-statement.htm
+1. Open a file using with and write the first paragraph from 
+(you don’t need
+to read the webpage, just copy paste it into code)
+https://en.wikipedia.org/wiki/Eigenface
+2. Open the file using with and read the contents using 
+readlines.
+'''
+def open_close_with():
+    with open('output.txt', 'w') as fi:
+        fi.write('''Eigenfaces is the name given to a set of 
+             eigenvectors when they are used in the computer 
+             vision problem of human face recognition.[1] The
+             approach of using eigenfaces for recognition was 
+             developed by Sirovich and Kirby (1987) and used 
+             by Matthew Turk and Alex Pentland in face 
+             classification.[2] The eigenvectors are derived
+             from the covariance matrix of the probability 
+             distribution over the high-dimensional vector 
+             space of face images. The eigenfaces themselves 
+             form a basis set of all images used to construct
+             the covariance matrix. This produces dimension 
+             reduction by allowing the smaller set of basis 
+             images to represent the original training images.
+             Classification can be achieved by comparing how 
+             faces are represented by the basis set.''')
+        fi.close()
+    
+    with open('output.txt', 'r') as f:
+        print(f.readlines())
+    f.close()
 
+'''
+2.11.
+Strings
+1. Split the paragraph to a list of words by spaces 
+(hint: split()) 
+2. Join the words back into a long string using “join”. 
+(hint: join())
+* (optional) Create a paragraph with the word order reversed
+ in each sentence (but keep the order of the sentences)
+3. write a function accepting two numbers and printing 
+“the sum of __ and ___ is ___”.
+Do this twice using one string formats learned in class each
+ time.
+Hint: https://pyformat.info/
+'''
 
-
-
-
-
-
+def spliting():
+    s = '''Eigenfaces is the name given to a set of 
+             eigenvectors when they are used in the computer 
+             vision problem of human face recognition.[1] The
+             approach of using eigenfaces for recognition was 
+             developed by Sirovich and Kirby (1987) and used 
+             by Matthew Turk and Alex Pentland in face 
+             classification.[2] The eigenvectors are derived
+             from the covariance matrix of the probability 
+             distribution over the high-dimensional vector 
+             space of face images. The eigenfaces themselves 
+             form a basis set of all images used to construct
+             the covariance matrix. This produces dimension 
+             reduction by allowing the smaller set of basis 
+             images to represent the original training images.
+             Classification can be achieved by comparing how 
+             faces are represented by the basis set.'''
+    a = s.split()
+    print(a)
+    b = ' '.join(a)
+    print(b)
+def formating():
+    
 
 
 
