@@ -498,7 +498,26 @@ print(timeit.timeit('timing3()',setup="from __main__ import  timing3" ))
 print(timeit.timeit('timing4()',setup="from __main__ import  timing4" ))
 
 
-
+'''
+2.13.
+Exceptions
+Read about exceptions from:
+http://www.pythonforbeginners.com/error-handling/exception-
+handling-inpython
+1. Enhance the function you wrote which reads numbers (Strings 3.)
+a. In case of a string input writing an error message 
+   instead of raising an error
+b. Raise an error in case one of the input numbers is > 100
+c. Create a code which tries to read from the dictionary of 
+   squares created 
+'''
+def dictionary_of_sq_enhanced():
+    try:
+        n = int(input('Enter a number between 1 - 100'))
+    except ValueError:
+        print('Error: only numbers, pls')
+    d = {i:i*i for i in range(1, n+1)}
+    print(d)
 
 
 
