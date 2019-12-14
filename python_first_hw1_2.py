@@ -538,9 +538,55 @@ Create a logger in any of your programs and log various messages
 console and info for file)and different formats and try 
 different levels of logs in your code.
 '''
+import logging
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
+hdlr = logging.FileHandler('myapp.log')
+hdlr.setLevel(logging.DEBUG)
+strhdlr = logging.StreamHandler()
+strhdlr.setLevel(logging.ERROR)
+formatter = logging.Formatter(
+    '%(asctime)s %(name)s %(levelname)s %(message)s')
+hdlr.setFormatter(formatter)
+logger.addHandler(hdlr) 
+logger.addHandler(strhdlr)
 
+try:
+    n = int(input())
+except:
+    logger.error('Error: only numbers, pls')
+if (n > 100):
+    logger.error('''Error: the number is bigger than 100''')
+    raise Exception('Exeption: the number is bigger than 100')
+        
+d = {i:i*i for i in range(1, n+1)}
+file = open("dictionaryfile.txt", "w")
+file.write(str(d))
+file.close()
+logger.info('the dictionary is made')
+import ast
+with open("dictionaryfile.txt", "r") as data:
+    dictionary = ast.literal_eval(data.read())
+logger.debug(dictionary)
 
-
+'''
+2.15
+Regular expressions (re)
+You can read about regex from the following sources:
+Python documentation - https://docs.python.org/3/library/re.html
+General links about RegEx - http://www.regular-expressions.info/
+tutorial.html
+And - https://www.icewarp.com/support/online_help/203030104.htm
+(The last is more brief and practical)
+Try to understand the difference between search and match (and 
+compile),and how to match the strings exactly.
+1. To get the hang of it, try to do a few of the the exercises in:
+https://regexone.com/
+2. To get a sense of regex in python, take a look at the first few
+ exercises in: http://www.w3resource.com/python-exercises/re/
+ 3*. Optional: Write a regular expression for identifying email 
+ addresses,find and compare to regular expression found online.
+'''
 
 
 
