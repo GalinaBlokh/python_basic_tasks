@@ -518,7 +518,7 @@ def dictionary_of_sq_enhanced():
         print('Error: only numbers, pls')
     if (n>100):
         raise Exception('Error: the number is bigger than 100', n)
-    d = {i:i*i for i in range(1, n+1)}
+    d =  {i:i*i for i in range(1, n+1)}
     
     import ast
     with open("dictionaryfile.txt", "r") as data:
@@ -587,13 +587,129 @@ https://regexone.com/
  3*. Optional: Write a regular expression for identifying email 
  addresses,find and compare to regular expression found online.
 '''
+email_validator = r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)"
 
+'''
+2.16.
+Combine everything!
+Write a simple “range calculator” function which reads a file and
+ writes the result into another file. You should log the 
+ operations, and how much time they took and handle problematic
+ inputs (strings, wrong characters, etc.).
+Validate the input using regex.
+The file will contain in each line two numbers denoting a range 
+of numbers and they can only be integers, an operation denoted by
+ a sign (+,*,-,/,**) and a third number which will be applied with 
+ the operation for each of the numbers in the range. Note all 
+ numbers and signs are separated by blanks(please don’t use .csv 
+ readers and use plain readers):
+5 100 - 17
+18 25 * 2.784
+(First line: subtract 17 from all numbers between 5 and 100, 
+Second line:
+multiply by 2.784 all numbers between 18 and 25)
+The result of each range should be written into one line, separated
+ with commas and with the precision of two digits after the decimal
+ point.
+'''
 
+'''
+2.17.
+os
+Os module provides a portable way of using operating system 
+dependentfunctionality you can read about os in this link.
+https://docs.python.org/3/library/os.html
+1. print absolute path on your system
+2. print files and directories in the current directory on your 
+system 
+'''
+import os
+print(os.path.abspath('.'))
+print(os.listdir('.') )
+'''
+2.18.
+glob.
+The glob module finds all the pathnames matching a specified 
+pattern according to the rules used by the Unix shell.
+You can read about it in the next link.
+https://docs.python.org/3/library/glob.html
+Find in your download directory all the files that have extension 
+pdf (.pdf)
+'''
+import glob
+os.chdir('../Downloads')
+for file in glob.glob('*.pdf'):
+    print(file)
+'''
+2.19.
+enumerate
+http://book.pythontips.com/en/latest/enumerate.html
+Write a list with some values, use for and enumerate to print in 
+each iteration the value and his index
+'''
+l1 = ['eat', 'repeat', 'walk', 'donate']
+for i in enumerate(l1):
+    print(i)
 
+'''
+2.20.
+Threads
+1. Write two functions, one that writes “SVD” article from 
+wikipedia to a file and one that calculates the sum of two numbers.
+ Run the two functions simultaneously using threads.
+2. Use Threading.Lock() in order to acquire and release mutexes so
+ the two functions don’t run simultaneously.
+Hint: http://www.python-course.eu/threads.php
+'''
+ 
+s = '''Eigenfaces is the name given to a set of 
+             eigenvectors when they are used in the computer 
+             vision problem of human face recognition.[1] The
+             approach of using eigenfaces for recognition was 
+             developed by Sirovich and Kirby (1987) and used 
+             by Matthew Turk and Alex Pentland in face 
+             classification.[2] The eigenvectors are derived
+             from the covariance matrix of the probability 
+             distribution over the high-dimensional vector 
+             space of face images. The eigenfaces themselves 
+             form a basis set of all images used to construct
+             the covariance matrix. This produces dimension 
+             reduction by allowing the smaller set of basis 
+             images to represent the original training images.
+             Classification can be achieved by comparing how 
+             faces are represented by the basis set.'''
+    a = s.split()
+    print(a)
+    b = ' '.join(a)
+    print(b)
+    
+def formating(a,b):
+    c = a+b
+    print('the sum of {} and {} is {}'.format(a,b,c))
+'''
+2.21
+Random
+https://docs.python.org/3/library/random.html
+Create a list with 10 values (string)
+Take only one value from the list from a random place
+Split the list to two lists in different sizes each list contain values 
+from the previous list but in random order.
+'''
+import random
+from random import randrange, sample
+n = 10
+list1 = [randrange(1, 10) for i in range(n)]
+print(list1)
+a = sample(list1,1)
+print(a)
+list2 = ['one', 'two', 'ten', 'eight', 'cat', 'dog', 'bird', 'fish']
+random.shuffle(list2)
+cut = random.randint(0, len(list2))
+list_1 = list2[:cut]
+list_2 = list2[cut:]
 
-
-
-
+print (list_1)
+print (list_2)
 
 
 
