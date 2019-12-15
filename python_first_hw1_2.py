@@ -661,31 +661,43 @@ wikipedia to a file and one that calculates the sum of two numbers.
  the two functions don’t run simultaneously.
 Hint: http://www.python-course.eu/threads.php
 '''
- 
-s = '''Eigenfaces is the name given to a set of 
-             eigenvectors when they are used in the computer 
-             vision problem of human face recognition.[1] The
-             approach of using eigenfaces for recognition was 
-             developed by Sirovich and Kirby (1987) and used 
-             by Matthew Turk and Alex Pentland in face 
-             classification.[2] The eigenvectors are derived
-             from the covariance matrix of the probability 
-             distribution over the high-dimensional vector 
-             space of face images. The eigenfaces themselves 
-             form a basis set of all images used to construct
-             the covariance matrix. This produces dimension 
-             reduction by allowing the smaller set of basis 
-             images to represent the original training images.
-             Classification can be achieved by comparing how 
-             faces are represented by the basis set.'''
-    a = s.split()
-    print(a)
-    b = ' '.join(a)
-    print(b)
-    
-def formating(a,b):
+from threading import Lock, Thread
+lock = Lock()
+def open_close_with2():
+    with open('output.txt', 'w') as fi:
+            fi.write('''Eigenfaces is the name given to a set of 
+                 eigenvectors when they are used in the computer 
+                 vision problem of human face recognition.[1] The
+                 approach of using eigenfaces for recognition was 
+                 developed by Sirovich and Kirby (1987) and used 
+                 by Matthew Turk and Alex Pentland in face 
+                 classification.[2] The eigenvectors are derived
+                 from the covariance matrix of the probability 
+                 distribution over the high-dimensional vector 
+                 space of face images. The eigenfaces themselves 
+                 form a basis set of all images used to construct
+                 the covariance matrix. This produces dimension 
+                 reduction by allowing the smaller set of basis 
+                 images to represent the original training images.
+                 Classification can be achieved by comparing how 
+                 faces are represented by the basis set.''')
+            fi.close()
+        
+    with open('output.txt', 'r') as f:
+         print(f.readlines())
+         f.close()
+    lock.acquire()
+         
+def formating2():
+    a, b = 5, 6
     c = a+b
     print('the sum of {} and {} is {}'.format(a,b,c))
+    lock.release()
+
+
+Thread(target = open_close_with2()).start()
+Thread(target = formating2()).start()
+
 '''
 2.21
 Random
